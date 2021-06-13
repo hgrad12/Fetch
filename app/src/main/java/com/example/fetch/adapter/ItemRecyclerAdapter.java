@@ -1,5 +1,6 @@
 package com.example.fetch.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
         listOfItems = items;
         this.context = context;
     }
+
     @NonNull
     @org.jetbrains.annotations.NotNull
     @Override
@@ -31,12 +33,13 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull @org.jetbrains.annotations.NotNull ItemRecyclerAdapter.ViewHolder holder, int position) {
         Item item = listOfItems.get(position);
-        holder.id.setText(String.valueOf(item.getId()));
-        holder.listId.setText(String.valueOf(item.getListId()));
-        holder.name.setText(item.getName());
+        holder.id.setText("Id: " + item.getId());
+        holder.listId.setText("List Id: " + item.getListId());
+        holder.name.setText("Name: " + item.getName());
     }
 
     @Override
@@ -44,7 +47,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemRecyclerAdapte
         return listOfItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView id, listId, name;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
